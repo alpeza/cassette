@@ -4,6 +4,8 @@ Utilidad para pasar guiones escritos en [Fountain](https://fountain.io/) a audio
 
 Ejemplos de uso:
 
+* Cargamos un fichero de guión en formato [Fountain](https://fountain.io/)
+  
 ```bash
 cst="corto"
 fountain="corto.fountain"
@@ -11,24 +13,40 @@ salida="$(pwd)/corto"
 cassette run -j load -p "pname=$cst" -p "fountain=$fountain"
 ```
 
+* Describimos el guión:
+  
 ```bash
 cassette run -j describe -p "pname=$cst"
 ```
 
+* Obtenemos el timeline y lo completamos que las pistas que enlazan escenas
+  
 ```bash
 cassette run -j gettimeline -p "pname=$cst.cst"
 ```
 
+* Cargamos el timeline al proyecto
+  
 ```bash
 cassette run -j loadtimeline -p "pname=$cst" -p "timeline=$cst.cst.yaml"
 ```
 
+* Renderizamos los dialogos 
+  
 ```bash
 cassette run -j renderaudio -p "pname=$cst" -p "storepath=$salida"
 ```
 
+* Renderizamos las escenas 
+  
 ```bash
 cassette run -j renderscene -p "pname=$cst" -p "storepath=$salida"
+```
+
+* Renderizamos el guión completo.
+  
+```bash
+cassette run -j renderrecord -p "pname=$cst" -p "storepath=$salida"
 ```
 
 ## Voces
