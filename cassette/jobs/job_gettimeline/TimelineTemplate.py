@@ -3,7 +3,9 @@ import jinja2
 templates = {
     "default": """
 tags:
-  sound1: /path/to/sound.wav
+  # Tagexamples
+  sound1: /Users/alvaroperis/Dropbox/cinemawritter/playmix/hinds.wav
+  bg: /Users/alvaroperis/Dropbox/cinemawritter/playmix/intro.wav
 characters:
   {% for character in characters %}
   # {{ character.name }}
@@ -18,10 +20,13 @@ characters:
 timeline:
   {%- for scene in scenes %}
   # {{ scene.location }}
-  - id: {{ scene.scene_id }}
-    type: scene
+  - type: scene
+    scene_id: {{ scene.scene_id }}
+    background: bg
   - type: sound
-    tag: sound1
+    track: sound1
+    duration: 8
+    volume: inout
   {% endfor %}
         """
 }

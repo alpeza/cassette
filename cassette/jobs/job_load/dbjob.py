@@ -32,8 +32,8 @@ def createDB(name):
         script_id INTEGER,
         scene_number TEXT,
         location TEXT,
+        audioPath   TEXT,
         description TEXT,
-        audioPath    TEXT,
         FOREIGN KEY (script_id) REFERENCES Script(script_id)
     );
     ''')

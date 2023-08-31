@@ -1,30 +1,27 @@
 from setuptools import setup, find_packages
 import os
 
-# Obtén la lista de archivos en el directorio "cassette/utils"
+with open("README.md", "r", encoding="utf-8") as readme_file:
+    long_description = readme_file.read()
 
 
-def get_data_files(directory):
-    data_files = []
-    for root, _, files in os.walk(directory):
-        for filename in files:
-            data_files.append(os.path.relpath(
-                os.path.join(root, filename), start=directory))
-    return data_files
+def getRequirements():
+    with open("requirements.txt", "r", encoding="utf-8") as requirements_file:
+        install_requires = [line.strip()
+                            for line in requirements_file if line.strip()]
 
 
 setup(
-    name="cassette",
-    version="1.0.0",
-    description="Una aplicación de ejemplo de PyClick",
-    author="Tu Nombre",
-    author_email="tu@email.com",
+    name="alpezacassette",
+    version="0.1.2",
+    description="Renderizador de dialogos .fountain a audio",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    author="alpeza",
     packages=find_packages(),
     include_package_data=True,
-    install_requires=[
-        "pyclick",
-        # Lista de otras dependencias aquí
-    ],
+    install_requires=getRequirements(),
+    url="https://github.com/alpeza/cassette",
     entry_points={
         "console_scripts": [
             "cassette = cassette.main:main",
