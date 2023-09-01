@@ -49,7 +49,31 @@ cassette run -j renderscene -p "pname=$cst" -p "storepath=$salida"
 cassette run -j renderrecord -p "pname=$cst" -p "storepath=$salida"
 ```
 
+# Configuración del timeline.
+
 ## Voces
+
+```yaml
+characters:
+  # PEDRO
+  - id: 1
+    voice:
+      tts:
+        voiceid: 14
+      filter:
+        - reverb:
+            room_size: 0.1
+
+  # MARIA
+  - id: 2
+    voice:
+      tts:
+        voiceid: 29
+      filter:
+        - reverb:
+            room_size: 0.1
+```
+
 
 | Genero | ID | Nombre | Lengua |
 |--------|----|--------|--------|
@@ -60,3 +84,23 @@ cassette run -j renderrecord -p "pname=$cst" -p "storepath=$salida"
 | VoiceGenderMale |15| Juan |`['es_MX']`| 
 | VoiceGenderMale |8| Diego |`['es_AR']`| 
 
+
+
+## Timeline
+
+### Escena
+
+```yaml
+  - type: scene
+    scene_id: 1
+    background: bg
+```
+
+### Transición
+
+```yaml 
+  - type: sound
+    track: sound1
+    duration: 8
+    volume: inout
+```
