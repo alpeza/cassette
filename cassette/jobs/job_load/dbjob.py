@@ -56,8 +56,22 @@ def createDB(name):
         character_id INTEGER,
         text TEXT,
         audioPath TEXT,
+        audioDuration REAL,
         FOREIGN KEY (scene_id) REFERENCES Scene(scene_id),
         FOREIGN KEY (character_id) REFERENCES Character(character_id)
+    );
+    ''')
+
+    # Tabla que almacenará las imagenes para cada video.
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS DialogueVideo (
+        ID INTEGER PRIMARY KEY,
+        dialogue_id INTEGER UNIQUE,
+        rendered BOOLEAN,
+        type TEXT,
+        imagePath TEXT,
+        videoPath TEXT,
+        FOREIGN KEY (dialogue_id) REFERENCES Dialogue(dialogue_id)
     );
     ''')
 
