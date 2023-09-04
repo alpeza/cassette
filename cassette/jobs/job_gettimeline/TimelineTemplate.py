@@ -28,6 +28,16 @@ timeline:
     duration: 8
     volume: inout
   {% endfor %}
+
+video:
+  {%- for dialogue in dialogues %}
+  # {{ dialogue.SceneID }} {{ dialogue.CharacterName }}:
+  # {{ dialogue.FirstWords }} ...
+  - id: {{ dialogue.DialogueID }}
+    type: image
+    imagePath: path/to/image.jpeg
+  {% endfor %} 
+
         """
 }
 

@@ -9,10 +9,11 @@ def run(params):
     descriptor = Descriptor.Descriptor(db_file_path)
     characters = descriptor.get_characters()
     scenes = descriptor.get_scenes()
+    dialogues = descriptor.get_dialogues()
 
     # Renderiza la plantilla con los datos
     rendered_yaml = TimelineTemplate.TimelineTemplate(
-        params['useDefault']).render(characters=characters, scenes=scenes)
+        params['useDefault']).render(characters=characters, scenes=scenes, dialogues=dialogues)
 
     # Guarda el resultado en un archivo YAML
 

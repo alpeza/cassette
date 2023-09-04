@@ -62,7 +62,7 @@ def createDB(name):
     );
     ''')
 
-    # Tabla que almacenará las imagenes para cada video.
+    #
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS DialogueVideo (
         ID INTEGER PRIMARY KEY,
@@ -74,7 +74,6 @@ def createDB(name):
         FOREIGN KEY (dialogue_id) REFERENCES Dialogue(dialogue_id)
     );
     ''')
-
     # Sentencia SQL para crear la tabla Element
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS Element (
