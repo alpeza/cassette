@@ -21,7 +21,9 @@ def createDB(name):
         title TEXT,
         author TEXT,
         date_created DATE,
-        description TEXT
+        description TEXT, 
+        audioPath TEXT, 
+        videoPath TEXT
     );
     ''')
 
