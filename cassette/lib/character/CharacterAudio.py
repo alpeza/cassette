@@ -5,6 +5,9 @@ import random
 import traceback
 from pedalboard import Pedalboard, Reverb, Distortion, Delay, Gain
 from pedalboard.io import AudioFile
+import subprocess
+from pydub import AudioSegment
+
 
 # Configura el sistema de registro (logging)
 logger = logging.getLogger(__name__)
@@ -114,6 +117,23 @@ class CharacterAudio:
         self.engine.say(text)
         self.engine.runAndWait()
 
+    def decir_y_guardar_a_wav(self, texto, archivo_salida):
+        try:
+
+            archivo_salida = archivo_salida.split(".")[0]
+            # Ejecutar el comando "say" con el texto proporcionado y guardar la salida en un archivo AIFF
+            subprocess.run(
+                ["say", texto, "-o", archivo_salida + ".aiff", "-v", "Jorge"])
+
+            # Convertir el archivo AIFF a WAV utilizando pydub
+            audio = AudioSegment.from_file(
+                archivo_salida + ".aiff", format="aiff")
+            audio.export(archivo_salida + ".wav", format="wav")
+
+            # print(f"Texto guardado en {archivo_salida}.wav")
+        except Exception as e:
+            print(f"Error: {str(e)}")
+
     def ttsay_and_save(self, text, out):
         try:
             self.engine.save_to_file(text, out)
@@ -149,7 +169,8 @@ class CharacterAudio:
             full_path = os.path.join(TMP_OUTWAV, temp_filename)
 
             try:
-                self.ttsay_and_save(text, full_path)
+                # self.ttsay_and_save(text, full_path)
+                self.decir_y_guardar_a_wav(text, full_path)
                 self.addFilters(full_path, out)
                 os.remove(full_path)
             except Exception as e:
