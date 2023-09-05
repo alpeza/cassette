@@ -144,7 +144,7 @@ class CharacterAudio:
             # Generar un valor aleatorio de tres dígitos
             random_number = random.randint(1, 9999)
             # Construir el nombre del archivo temporal
-            temp_filename = f"{out_filename}-{str(random_number)}tmp.wav"
+            temp_filename = f"{out_filename.replace('_','')}{str(random_number)}tmp.wav"
             # Unir el directorio base con el nombre del archivo temporal
             full_path = os.path.join(TMP_OUTWAV, temp_filename)
 
