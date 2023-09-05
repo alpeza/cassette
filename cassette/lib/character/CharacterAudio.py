@@ -145,16 +145,18 @@ class CharacterAudio:
             try:
                 attempts = 0
 
-                while attempts < 10:
+                while attempts < 100:
                     try:
                         # Generar un valor aleatorio de tres dígitos
-                        random_number = random.randint(1, 9999)
+                        random_number = random.randint(1, 99999)
                         # Construir el nombre del archivo temporal
                         temp_filename = f"{out_filename}-{str(random_number)}tmp.wav"
                         # Unir el directorio base con el nombre del archivo temporal
                         full_path = os.path.join(TMP_OUTWAV, temp_filename)
                         self.ttsay_and_save(text, full_path)
                         self.addFilters(full_path, out)
+                        import time
+                        time.sleep(1)
                         os.remove(full_path)
                     except Exception as e:
                         print(
