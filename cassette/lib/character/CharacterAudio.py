@@ -116,7 +116,6 @@ class CharacterAudio:
 
     def ttsay_and_save(self, text, out):
         try:
-            self.engine = pyttsx3.init()
             self.engine.save_to_file(text, out)
             self.engine.runAndWait()
             logger.debug(f"Salida guardada en '{out}'")
