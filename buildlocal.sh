@@ -1,4 +1,4 @@
-git add -A
+git add .
 git commit -m "Update"
 git push
 python3.9 setup.py sdist
