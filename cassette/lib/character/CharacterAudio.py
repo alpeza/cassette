@@ -9,7 +9,7 @@ from pedalboard.io import AudioFile
 # Configura el sistema de registro (logging)
 logger = logging.getLogger(__name__)
 
-TMP_OUTWAV = "/tmp"
+TMP_OUTWAV = ""
 
 EXAMPLE_VOICE_CONFIG = {
     "voice": {
