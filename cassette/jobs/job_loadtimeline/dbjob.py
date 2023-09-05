@@ -34,6 +34,7 @@ def createDB(name):
     CREATE TABLE IF NOT EXISTS Timeline (
         sequence_id INTEGER PRIMARY KEY,
         type TEXT,
+        scene_id INTEGER,
         content TEXT
     );
     ''')
@@ -47,6 +48,16 @@ def createDB(name):
     );
     ''')
 
+    cursor.execute('''
+    CREATE VIEW VideoTimeView AS
+    SELECT D.dialogue_id, D.audioDuration, DV.imagePath, D.scene_id,
+        CASE WHEN D.audioDuration = MAX(D.audioDuration) OVER (PARTITION BY D.scene_id)
+                THEN 'yes'
+                ELSE 'no'
+        END AS esMaximo
+    FROM Dialogue D
+    INNER JOIN DialogueVideo DV ON D.dialogue_id = DV.dialogue_id;
+    ''')
     # Guardar los cambios y cerrar la conexión
     conn.commit()
     conn.close()

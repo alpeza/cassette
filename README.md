@@ -33,10 +33,10 @@ Se puede pasar una plantilla [jinja2](https://jinja.palletsprojects.com/en/3.0.x
 
 ```yaml
 tags:
-  intro: /path/to/intro.wav
-  background: /path/to/bg.wav
-  end: /path/to/end.wav
-  transition: /path/to/transition.wav
+  intro: /Dropbox/draft/Gymnopedie.wav
+  background: /Dropbox/draft/Gymnopedie.wav
+  end: /Dropbox/draft/Gymnopedie.wav
+  transition: /Dropbox/draft/Gymnopedie.wav
 characters:
 
   - id: 1
@@ -85,6 +85,15 @@ timeline:
     track: end
     duration: 8
     volume: inout
+
+video:
+  {%- for dialogue in dialogues %}
+  # {{ dialogue.SceneID }} {{ dialogue.CharacterName }}:
+  # {{ dialogue.FirstWords }} ...
+  - id: {{ dialogue.DialogueID }}
+    type: image
+    imagePath: /Users/alvaroperis/Dropbox/draft/f9/y1.jpeg
+  {% endfor %} 
 ```
 
 * Cargamos el timeline al proyecto
@@ -109,6 +118,12 @@ cassette run -j renderscene -p "pname=$cst" -p "storepath=$salida"
   
 ```bash
 cassette run -j renderrecord -p "pname=$cst" -p "storepath=$salida"
+```
+
+* Renderizado de video
+
+```bash
+cassette run -j rendervideo -p "pname=$cst" -p "storepath=$salida" -p "audiopath=$salida/film/$cst.mp3"
 ```
 
 # Configuración del timeline.

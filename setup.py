@@ -13,8 +13,8 @@ def getRequirements():
 
 setup(
     name="alpezacassette",
-    version="0.1.5",
-    description="Renderizador de dialogos .fountain a audio",
+    version="0.5.0",
+    description="Renderizador de dialogos .fountain a audio y video",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="alpeza",
