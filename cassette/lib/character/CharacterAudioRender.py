@@ -67,7 +67,7 @@ class CharacterAudioRender:
             self.logger.error(
                 f"Error rendering dialogue {dialogue_id}: {str(e)}")
 
-    def renderAllDialogs(self, outputDirectory, maxjobs=1, outprefix=""):
+    def renderAllDialogs(self, outputDirectory, maxjobs=5, outprefix=""):
         conn = sqlite3.connect(self.db_file)
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
